@@ -1,0 +1,8 @@
+{
+  "name": "login-portal",
+  "version": "1.0.0",
+  "description": "Black & Gold Login Portal with Supabase Auth",
+  "scripts": {
+    "build": "node build.js"
+  }
+}
