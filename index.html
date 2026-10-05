@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal — Black & Gold Edition</title>
+  <meta name="description" content="Exclusive Black and Gold authentication portal and welcome dashboard.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Ambient Luxury Glow -->
+  <div class="luxury-glow glow-top"></div>
+  <div class="luxury-glow glow-bottom"></div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Main App Wrapper -->
+  <div id="app">
+
+    <!-- ================= 1. AUTH SCREEN (LOGIN & REGISTER) ================= -->
+    <div id="auth-screen" class="screen active">
+      <div class="auth-card">
+        
+        <!-- Brand Monogram -->
+        <div class="brand-monogram">
+          <div class="monogram-icon">◆</div>
+          <span class="monogram-text">PORTAL</span>
+        </div>
+
+        <!-- Tab Switcher with animated gold slider -->
+        <div class="auth-tabs" role="tablist">
+          <button type="button" class="tab-btn active" id="tab-login">Sign In</button>
+          <button type="button" class="tab-btn" id="tab-register">Register</button>
+          <div class="tab-slider" id="tab-slider"></div>
+        </div>
+
+
+        <!-- Login Form -->
+        <form id="login-form" class="form-content active" novalidate>
+          <div class="field">
+            <label for="login-email">Email Address</label>
+            <div class="input-container">
+              <input type="email" id="login-email" placeholder="name@domain.com" required autocomplete="username">
+            </div>
+            <span class="error" id="login-email-error"></span>
+          </div>
+
+          <div class="field">
+            <label for="login-password">Password</label>
+            <div class="input-container password-wrap">
+              <input type="password" id="login-password" placeholder="Enter your password" required autocomplete="current-password">
+              <button type="button" class="toggle-eye" data-target="login-password" aria-label="Toggle password view" title="Show/Hide Password">
+                <span class="eye-icon">👁</span>
+              </button>
+            </div>
+            <span class="error" id="login-password-error"></span>
+          </div>
+
+          <button type="submit" class="btn primary-btn ripple-btn" id="btn-login">
+            <span>Sign In</span>
+          </button>
+          
+          <p class="switch-hint">
+            Don't have an account? <a href="#" id="link-to-register">Create account</a>
+          </p>
+        </form>
+
+        <!-- Register Form -->
+        <form id="register-form" class="form-content" novalidate>
+          <div class="field">
+            <label for="reg-name">Full Name</label>
+            <div class="input-container">
+              <input type="text" id="reg-name" placeholder="Alexander Swift" required autocomplete="name">
+            </div>
+            <span class="error" id="reg-name-error"></span>
+          </div>
+
+          <div class="field">
+            <label for="reg-email">Email Address</label>
+            <div class="input-container">
+              <input type="email" id="reg-email" placeholder="alex@domain.com" required autocomplete="email">
+            </div>
+            <span class="error" id="reg-email-error"></span>
+          </div>
+
+          <div class="field">
+            <label for="reg-password">Password</label>
+            <div class="input-container password-wrap">
+              <input type="password" id="reg-password" placeholder="At least 6 characters" required autocomplete="new-password">
+              <button type="button" class="toggle-eye" data-target="reg-password" aria-label="Toggle password view" title="Show/Hide Password">
+                <span class="eye-icon">👁</span>
+              </button>
+            </div>
+
+            <!-- Password Strength -->
+            <div class="strength-meter-wrap" id="reg-strength-wrap">
+              <div class="meter-bar-track">
+                <div class="meter-bar-fill" id="reg-meter-fill"></div>
+              </div>
+              <div class="meter-labels">
+                <span class="meter-hint">Password strength</span>
+                <span class="meter-status" id="reg-meter-status">Too short</span>
+              </div>
+            </div>
+            <span class="error" id="reg-password-error"></span>
+          </div>
+
+          <div class="field">
+            <label for="reg-confirm">Confirm Password</label>
+            <div class="input-container password-wrap">
+              <input type="password" id="reg-confirm" placeholder="Repeat password" required autocomplete="new-password">
+              <button type="button" class="toggle-eye" data-target="reg-confirm" aria-label="Toggle password view" title="Show/Hide Password">
+                <span class="eye-icon">👁</span>
+              </button>
+            </div>
+            <span class="match-badge hidden" id="reg-match-badge">✓ Passwords match</span>
+            <span class="error" id="reg-confirm-error"></span>
+          </div>
+
+          <button type="submit" class="btn primary-btn ripple-btn" id="btn-register">
+            <span>Create Account</span>
+          </button>
+
+          <p class="switch-hint">
+            Already have an account? <a href="#" id="link-to-login">Sign in</a>
+          </p>
+        </form>
+
+      </div>
+    </div>
+
+    <!-- ================= 2. EMPTY DASHBOARD (BLACK & GOLD WELCOME) ================= -->
+    <div id="dashboard-screen" class="screen">
+      <!-- Luxury Navbar -->
+      <header class="navbar">
+        <div class="nav-left">
+          <div class="nav-logo">
+            <span class="gold-gem">◆</span>
+            <span>PORTAL</span>
+          </div>
+        </div>
+        
+        <!-- Profile Dropdown -->
+        <div class="profile-dropdown-wrapper">
+          <button type="button" class="profile-btn ripple-btn" id="profile-btn" aria-haspopup="true" aria-expanded="false" title="Click to view profile & change password">
+            <span class="profile-avatar" id="avatar-text">U</span>
+            <span class="profile-name" id="nav-user-name">User</span>
+            <span class="profile-arrow">▾</span>
+          </button>
+
+          <div class="dropdown-menu hidden" id="dropdown-menu">
+            <div class="dropdown-user-info">
+              <strong id="dropdown-full-name">User</strong>
+              <small id="dropdown-user-email">user@example.com</small>
+            </div>
+            <hr class="dropdown-divider">
+            <button type="button" class="dropdown-link" id="btn-open-password-modal">
+              <span class="link-icon">🔑</span>
+              <span>Change Password</span>
+            </button>
+            <button type="button" class="dropdown-link logout" id="btn-logout">
+              <span class="link-icon">🚪</span>
+              <span>Log Out</span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Dashboard Body: ONLY WELCOME IN LUXURY BLACK & GOLD -->
+      <main class="dashboard-body">
+        <div class="welcome-box">
+          <div class="luxury-badge">
+            <span class="badge-dot"></span>
+            <span>Active Session</span>
+          </div>
+
+          <h1 class="welcome-heading">Welcome, <span id="welcome-name">User</span>!</h1>
+          
+          <p class="welcome-tagline">
+            Your workspace is secure, clean, and ready.
+          </p>
+
+          <div class="quote-container">
+            <p class="welcome-quote">“Do what you can, with what you have, where you are.” — Theodore Roosevelt</p>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- ================= 3. CHANGE PASSWORD MODAL ================= -->
+    <div id="password-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-box">
+        <div class="modal-header">
+          <div class="modal-title-wrap">
+            <span class="modal-gold-gem">◆</span>
+            <h3 id="modal-title">Change Password</h3>
+          </div>
+          <button type="button" class="close-btn" id="btn-close-modal" aria-label="Close dialog">✕</button>
+        </div>
+
+        <form id="password-change-form" novalidate>
+          <div class="field">
+            <label for="current-password">Current Password</label>
+            <div class="input-container password-wrap">
+              <input type="password" id="current-password" placeholder="Enter current password" required autocomplete="current-password">
+              <button type="button" class="toggle-eye" data-target="current-password" aria-label="Toggle password view" title="Show/Hide Password">
+                <span class="eye-icon">👁</span>
+              </button>
+            </div>
+            <span class="error" id="current-password-error"></span>
+          </div>
+
+          <div class="field">
+            <label for="new-password">New Password</label>
+            <div class="input-container password-wrap">
+              <input type="password" id="new-password" placeholder="At least 6 characters" required autocomplete="new-password">
+              <button type="button" class="toggle-eye" data-target="new-password" aria-label="Toggle password view" title="Show/Hide Password">
+                <span class="eye-icon">👁</span>
+              </button>
+            </div>
+
+            <!-- Modal Strength -->
+            <div class="strength-meter-wrap" id="cp-strength-wrap">
+              <div class="meter-bar-track">
+                <div class="meter-bar-fill" id="cp-meter-fill"></div>
+              </div>
+              <div class="meter-labels">
+                <span class="meter-hint">Strength</span>
+                <span class="meter-status" id="cp-meter-status">Enter new password</span>
+              </div>
+            </div>
+            <span class="error" id="new-password-error"></span>
+          </div>
+
+          <div class="field">
+            <label for="confirm-new-password">Confirm New Password</label>
+            <div class="input-container password-wrap">
+              <input type="password" id="confirm-new-password" placeholder="Repeat new password" required autocomplete="new-password">
+              <button type="button" class="toggle-eye" data-target="confirm-new-password" aria-label="Toggle password view" title="Show/Hide Password">
+                <span class="eye-icon">👁</span>
+              </button>
+            </div>
+            <span class="match-badge hidden" id="cp-match-badge">✓ Passwords match</span>
+            <span class="error" id="confirm-new-password-error"></span>
+          </div>
+
+          <div class="modal-actions">
+            <button type="button" class="btn secondary-btn ripple-btn" id="btn-cancel-modal">Cancel</button>
+            <button type="submit" class="btn primary-btn ripple-btn" id="btn-submit-password">Update Password</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Supabase JS Client (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+
+  <!-- Environment Config (Supabase credentials — keep out of version control) -->
+  <script src="env.js"></script>
+
+  <!-- App Logic -->
+  <script src="app.js"></script>
+</body>
+</html>

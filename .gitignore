@@ -1,0 +1,3 @@
+# Supabase credentials — never commit these
+.env
+env.js
